@@ -7,17 +7,18 @@ Original file is located at
     https://colab.research.google.com/drive/1uiF79v6Xad5LK3qXZz3HlmGAGvOSBG1V
 """
 
+#IMPORTANDO AS BIBLIOTECAS NECESSARIAS
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-#LENDO O DATASET
+#LENDO A BASE DE DADOS RELACIONADOS A COVID-19 NO BRASIL (INFORMACOES OFICIAIS DO MINISTERIO DA SAUDE)
 df = pd.read_csv('https://raw.githubusercontent.com/wcota/covid19br/master/cases-brazil-states.csv')
 
-#MELHORANDO O NOME DAS COLUNAS DA TABELA
-df = df.rename(columns={'newDeaths': 'Novos óbitos','newCases': 'Novos casos','deaths_per_100k_inhabitants': 'Óbitos por 100 mil habitantes','totalCases_per_100k_inhabitants':'Casos por 100 mil habitantes'})
+#ALTERANDO OS NOMES DAS COLUNAS DA TABELA
+df = df.rename(columns={'newDeaths': 'NOVOS ÓBITOS','newCases': 'NOVOS CASOS','deaths_per_100k_inhabitants': 'ÓBITOS POR 100 MIL HABITANTES','totalCases_per_100k_inhabitants':'CASOS POR 100 MIL HABITANTES'})
 
-#SELECÃO DO ESTADO
+#SELECÃO DOS ESTADOS
 estados = list(df['state'].unique())
 state = st.sidebar.selectbox('Qual estado', estados)
 
@@ -25,15 +26,15 @@ state = st.sidebar.selectbox('Qual estado', estados)
 colunas = ['Novos óbitos','Novos casos','Óbitos por 100 mil habitantes','Casos por 100 mil habitantes']
 column = st.sidebar.selectbox('Qual tipo de iformação', colunas)
 
-#SELEÇÃO DAS LINHAS QUE PERTECEM AO ESTADO 
+#SELEÇÃO DAS LINHAS QUE PERTECEM A CADA ESTADO SELECIONADO
 df = df[df['state'] == state]
 
 fig = px.line(df, x="date", y=column, title=column + ' - ' + state)
 fig.update_layout( xaxis_title='Data', yaxis_title=column.upper(), title = {'x':0.5})
 
-st.title('DADOS COVID - BRASIL')
-st.write('Nessa aplicação, o usuário tem a opção de escolher o estado e o tipo de informação para mostrar o gráfico. Utilize o menu lateral para alterar a mostragem.')
+st.title('DADOS COVID-19 NO BRASIL - PUC MINAS')
+st.write('Escolha o estado e o tipo de informação para ser mostrada no gráfico atráves do menu lateral.')
 
 st.plotly_chart(fig, use_container_widht=True)
 
-st.caption('Os dados foram obtidos a partir do site: https://github.com/wcota/covid19br')
+st.caption('Pontifícia Universidade Católica de Minas Gerais - Danilo B Mateus')
