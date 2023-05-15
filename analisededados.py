@@ -31,7 +31,7 @@ df = df[df['state'] == state]
 fig = px.line(df, x="date", y=column, title=column + ' - ' + state)
 fig.update_layout( xaxis_title='Data', yaxis_title=column.upper(), title = {'x':0.5})
 
-st.title('DADOS COVID-19 NO BRASIL  -  PUC MINAS')
+st.title('DADOS COVID-19 NO BRASIL - PUC MINAS')
 st.write('Escolha o estado e o tipo de informação para ser mostrada no gráfico atráves do menu lateral.')
 
 st.plotly_chart(fig, use_container_widht=True)
