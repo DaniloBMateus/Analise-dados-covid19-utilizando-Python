@@ -19,11 +19,11 @@ df = df.rename(columns={'newDeaths': 'NOVOS ÓBITOS','newCases': 'NOVOS CASOS','
 
 #SELECÃO DOS ESTADOS
 estados = list(df['state'].unique())
-state = st.sidebar.selectbox('Qual estado', estados)
+state = st.sidebar.selectbox('ESCOLHA O ESTADO', estados)
 
 #SELEÇÃO DA COLUNA
-colunas = ['Novos óbitos','Novos casos','Óbitos por 100 mil habitantes','Casos por 100 mil habitantes']
-column = st.sidebar.selectbox('Qual tipo de iformação', colunas)
+colunas = ['NOVOS ÓBITOS','NOVOS CASOS','ÓBITOS POR 100 MIL HABITANTES','CASOS POR 100 MIL HABITANTES']
+column = st.sidebar.selectbox('ESCOLHA UMA OPÇÃO', colunas)
 
 #SELEÇÃO DAS LINHAS QUE PERTECEM A CADA ESTADO SELECIONADO
 df = df[df['state'] == state]
