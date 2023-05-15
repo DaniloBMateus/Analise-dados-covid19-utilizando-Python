@@ -15,7 +15,10 @@ import streamlit as st
 df = pd.read_csv('https://raw.githubusercontent.com/wcota/covid19br/master/cases-brazil-states.csv')
 
 #ALTERANDO OS NOMES DAS COLUNAS DA TABELA
-df = df.rename(columns={'newDeaths': 'NOVOS ÓBITOS','newCases': 'NOVOS CASOS','deaths_per_100k_inhabitants': 'ÓBITOS POR 100 MIL HABITANTES','totalCases_per_100k_inhabitants':'CASOS POR 100 MIL HABITANTES'})
+df = df.rename(columns={'newDeaths': 'NOVOS ÓBITOS',
+                        'newCases': 'NOVOS CASOS',
+                        'deaths_per_100k_inhabitants': 'ÓBITOS POR 100 MIL HABITANTES',
+                        'totalCases_per_100k_inhabitants':'CASOS POR 100 MIL HABITANTES'})
 
 #SELECÃO DOS ESTADOS
 estados = list(df['state'].unique())
